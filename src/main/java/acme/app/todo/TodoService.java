@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface TodoService {
 
-	Todo create(Todo todo);
+	Todo create(NewTodo todo);
 
 	List<Todo> findAll();
 }

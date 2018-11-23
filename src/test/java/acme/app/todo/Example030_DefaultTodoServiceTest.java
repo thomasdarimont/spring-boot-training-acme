@@ -36,7 +36,7 @@ class Example030_DefaultTodoServiceTest {
 	@Test
 	void shouldCreateEntity(@Autowired TodoService todoService) {
 
-		Todo todo = todoService.create(new Todo("Prepare training"));
+		Todo todo = todoService.create(new NewTodo("Prepare training"));
 
 		assertThat(todo).isNotNull();
 		assertThat(todo.getId()).isNotNull();

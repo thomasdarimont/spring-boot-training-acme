@@ -19,7 +19,7 @@ class DefaultTodoService implements TodoService {
 
 	@Transactional
 	@Override
-	public Todo create(Todo todo) {
+	public Todo create(NewTodo todo) {
 		return todoMapper.toTodo(todoRepository.save(todoMapper.toTodoEntity(todo)));
 	}
 
