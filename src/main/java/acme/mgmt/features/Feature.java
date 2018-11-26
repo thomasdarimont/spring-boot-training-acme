@@ -8,6 +8,8 @@ public enum Feature {
 	
 	ACME_TODO_FIND_ALL,
 	
+	ACME_TODO_FIND_BY_TITLE,
+	
 	ACME_TODO_NEW
 	;
 	

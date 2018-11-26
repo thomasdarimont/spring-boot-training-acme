@@ -1,5 +1,6 @@
 package acme.app.todo;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,6 +26,15 @@ class DefaultTodoService implements TodoService {
 
 	@Override
 	public List<Todo> findAll() {
-		return todoRepository.findAll().stream().map(todoMapper::toTodo).collect(Collectors.toList());
+		return toTodoList(todoRepository.findAll());
+	}
+
+	@Override
+	public List<Todo> findByTitle(String titlePattern) {
+		return toTodoList(todoRepository.findByTitleLike(titlePattern));
+	}
+
+	private List<Todo> toTodoList(Collection<TodoEntity> todos) {
+		return todos.stream().map(todoMapper::toTodo).collect(Collectors.toList());
 	}
 }

@@ -32,7 +32,9 @@ class Example011_MockedServiceGreetingControllerTest {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
 
 		when(greetingService.greet(anyString())) //
-				.then(inv -> "Hey " + inv.getArgument(0));
+				.then(inv -> //
+				"Hey " + inv.getArgument(0) //
+				);
 	}
 
 	@Test

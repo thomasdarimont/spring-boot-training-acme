@@ -7,4 +7,6 @@ public interface TodoService {
 	Todo create(NewTodo todo);
 
 	List<Todo> findAll();
+	
+	List<Todo> findByTitle(String titlePattern);
 }

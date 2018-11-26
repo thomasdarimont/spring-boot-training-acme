@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import acme.app.todo.NewTodo;
@@ -43,6 +44,24 @@ class TodoController {
 		featureUsageMonitor.ifPresent(Feature.ACME_TODO_FIND_ALL::record);
 		return todoService.findAll();
 	}
+	
+	/**
+	 * <pre>
+	 * {@code 
+	 * curl -u test:test http://localhost:8080/todos/search/by-title\?pattern=To | jq -c .
+	 * 
+	 * http --auth test:test localhost:8080/todos/search/by-title\?pattern=To
+	 * }
+	 * </pre>
+	 * 
+	 * @return
+	 */
+	@GetMapping("/search/by-title")
+	public List<Todo> findByTitle(@RequestParam(defaultValue="%") String pattern) {
+		featureUsageMonitor.ifPresent(Feature.ACME_TODO_FIND_BY_TITLE::record);
+		return todoService.findByTitle("%" + pattern + "%");
+	}
+
 
 	/**
 	 * <pre>
